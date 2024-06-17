@@ -11,6 +11,9 @@ def download_youtube_video(url, download_location, folder_path=None):
         return f"Video downloaded: {yt.title}"
     elif download_location == "Computer":
         if folder_path:
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
+            video_path = os.path.join(folder_path, f"{yt.title}.mp4")
             video.download(output_path=folder_path)
             return f"Video downloaded: {yt.title}"
         else:
